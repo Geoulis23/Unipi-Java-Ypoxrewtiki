@@ -1,35 +1,66 @@
 package project.unipi.gui.JavaFXProject;
-import javafx.application.Application;
-import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.image.Image;
-import javafx.scene.layout.StackPane;
-import javafx.stage.Stage;
+
 import java.util.ArrayList;
 import java.util.List;
+import javafx.application.Application;
+import javafx.geometry.Pos;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.StackPane;
+import javafx.stage.Stage;
+
 
 /**
  * JavaFX App
  */
 public class App extends Application {
+	//Stage
+	Stage stage;
+	//Scenes
+	Scene mainScene, bookManagementScene, studentManagementScene, loanManagementScene, paymentManagementScene;
+	//FlowPane (root)
+	FlowPane rootFlowPane;
+	//Main scene buttons
+	Button bookManagementBtn, studentManagementBtn, loanManagementBtn, paymentManagementBtn;
 
     @Override
     public void start(Stage stage) {
-        var javaVersion = SystemInfo.javaVersion();
-        var javafxVersion = SystemInfo.javafxVersion();
-
-        var label = new Label("Hello, JavaFX " + javafxVersion + ", running on Java " + javaVersion + ".");
-        var scene = new Scene(new StackPane(label), 640, 480);
-        //Image icon = new Image("C:\\Users\\maria\\eclipse-workspace\\JavaFXProject\\sprites\\download.png");
-       // stage.getIcons().add(icon);
+    	this.stage = stage;
+    	rootFlowPane = new FlowPane();
+    	//Button initialization
+    	bookManagementBtn = new Button("Book Management");
+    	studentManagementBtn = new Button("Student Management");
+    	loanManagementBtn = new Button("Loan Management");
+    	paymentManagementBtn = new Button("Payment Management");
+    	//Flowpane setup
+    	rootFlowPane.setHgap(15);
+    	rootFlowPane.setAlignment(Pos.CENTER);
+    	//Add buttons to rootFlowPane
+    	rootFlowPane.getChildren().add(bookManagementBtn);
+    	rootFlowPane.getChildren().add(studentManagementBtn);
+    	rootFlowPane.getChildren().add(loanManagementBtn);
+    	rootFlowPane.getChildren().add(paymentManagementBtn);
+    	//Set scenes
+    	mainScene = new Scene(rootFlowPane, 650, 300);
+    	bookManagementScene = new Scene(new GridPane(), 650, 300);
+    	studentManagementScene = new Scene(new GridPane(), 650, 300);
+    	loanManagementScene = new Scene(new GridPane(), 650, 300);
+    	paymentManagementScene = new Scene(new GridPane(), 650, 300);
+    	
+//        var label = new Label("Hello JavaFX ");
+//        var scene = new Scene(new StackPane(label), 640, 480);
         stage.setTitle("UniPi Library Project");
-        stage.setScene(scene);
+        stage.setScene(mainScene);
         stage.show();
     }
 
     public static void main(String[] args) {
         launch();
-        //Starting Books List
+      //Starting Books List
         List<Book> books = new ArrayList<>();  
         //BOOKS
         books.add(new Book("978-960-453-709-4", "Harry Potter and the Chamber of Secrets", "J.K Rowling", "Scholastic Inc", 1999, "Fantasy", true));
@@ -50,6 +81,6 @@ public class App extends Application {
         students.add(new Student( 2, "Elena", "Farmakh", 2005, "6908350896", "elenafar@unipi.com", "23456", "Economics"));
         students.add(new Student( 3, "Thanasis", "Aggelakis", 2003, "6943848906", "thanosagg@unipi.com", "21397", "Accounting and Finance"));
         students.add(new Student( 4, "Dimitris", "Kounas", 2004, "6974589062", "jimkounas@unipi.com", "22780", "Shipping Management"));
-  
     }
+
 }
