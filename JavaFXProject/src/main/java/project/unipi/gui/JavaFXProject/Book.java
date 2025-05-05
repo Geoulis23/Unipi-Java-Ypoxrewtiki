@@ -16,8 +16,8 @@ public class Book {
 		this.setTitle(title);
 		this.setAuthor(author);
 		this.setPublisher(publisher);
-		this.setYOP(yop);
-		this.setCAT(cat);
+		this.setYop(yop);
+		this.setCat(cat);
 		this.setAvail(avail);
 	}
 	
@@ -46,16 +46,16 @@ public class Book {
 	public String getPublisher() {
 		return this.publisher;
 	}
-	public void setYOP(int yop) {
+	public void setYop(int yop) {
 		this.yop = yop;
 	}
-	public int getYOP() {
+	public int getYop() {
 		return this.yop;
 	}
-	public void setCAT(String cat) {
+	public void setCat(String cat) {
 		this.cat = cat;
 	}
-	public String getCAT() {
+	public String getCat() {
 		return this.cat;
 	}
 	public void setAvail(boolean avail) {
@@ -64,4 +64,5 @@ public class Book {
 	public boolean getAvail() {
 		return this.avail;
 	}
+	
 }
