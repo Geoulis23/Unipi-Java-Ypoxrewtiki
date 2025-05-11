@@ -29,6 +29,9 @@ public class App extends Application {
     	
     	SceneCreator studentManagementSceneCreator = new StudentManagementSceneCreator(950, 400);
     	studentManagementScene = studentManagementSceneCreator.createScene();
+    	
+    	SceneCreator loanManagementSceneCreator = new LoanManagementSceneCreator(950, 400);
+    	loanManagementScene = loanManagementSceneCreator.createScene();
 //    	loanManagementScene = new Scene(new GridPane(), 650, 300);
 //    	paymentManagementScene = new Scene(new GridPane(), 650, 300);
     	
