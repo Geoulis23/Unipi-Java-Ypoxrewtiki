@@ -32,9 +32,10 @@ public class App extends Application {
     	
     	SceneCreator loanManagementSceneCreator = new LoanManagementSceneCreator(950, 400);
     	loanManagementScene = loanManagementSceneCreator.createScene();
-//    	loanManagementScene = new Scene(new GridPane(), 650, 300);
-//    	paymentManagementScene = new Scene(new GridPane(), 650, 300);
     	
+    	SceneCreator paymentManagementSceneCreator = new PaymentManagementSceneCreator(950, 400);
+    	paymentManagementScene = paymentManagementSceneCreator.createScene();
+
         stage.setTitle("UniPi Library Project");
         stage.setScene(mainScene);
         stage.show();
