@@ -13,14 +13,14 @@ import javafx.scene.control.cell.PropertyValueFactory;
 
 public class PaymentManagementSceneCreator extends SceneCreator implements EventHandler<MouseEvent>{
 	//FlowPane
-	FlowPane finePaymentFlowPane;
+	FlowPane finePaymentFlowPane, fineRegistrationFlowPane;
 	//GridPane
-	GridPane finePaymentGridPane;
+	GridPane finePaymentGridPane, fineRegistrationGridPane;
 	//Table View
 	TableView<Student> runningFinesTableView;
 	TableView<Fine>paymentHistoryTableView;
 	//Buttons
-	Button finePaymentBackBtn, fineRegistrationBtn, fineRegistrationBackBtn;
+	Button finePaymentBackBtn, fineRegistrationBtn, fineRegistrationBackBtn, payFineBtn;
 	//Scene
 	Scene fineRegistrationScene;
 	
@@ -108,12 +108,72 @@ public class PaymentManagementSceneCreator extends SceneCreator implements Event
 			App.stage.setScene(App.mainScene);
 		}
 		if(event.getSource() == fineRegistrationBtn) {
-			fineRegistrationScene = new Scene(finePaymentFlowPane, 950, 400);
+			//FlowPane Setup
+			fineRegistrationFlowPane = new FlowPane();
+			//GridPane Setup
+			fineRegistrationGridPane = new GridPane();
+			//Scene Setup
+			fineRegistrationScene = new Scene(fineRegistrationGridPane, 950, 400);
+			//Button Initialization 
+			payFineBtn = new Button("Pay Fine");
+			fineRegistrationBackBtn = new Button("Back");
+			//Connect handler with button
+	    	payFineBtn.setOnMouseClicked(this);
+	    	fineRegistrationBackBtn.setOnMouseClicked(this);
+	    	//FlowPane Customization
+	    	fineRegistrationFlowPane.setHgap(15);
+	    	fineRegistrationFlowPane.setAlignment(Pos.BOTTOM_CENTER);
+	    	fineRegistrationFlowPane.getChildren().add(fineRegistrationBackBtn);
+	    	fineRegistrationBackBtn.setAlignment(Pos.BOTTOM_CENTER);
+	    	fineRegistrationFlowPane.getChildren().add(payFineBtn);
+	    	payFineBtn.setAlignment(Pos.BOTTOM_CENTER);
+	    	//Customize GridPane
+	    	fineRegistrationGridPane.setAlignment(Pos.CENTER);
+	    	fineRegistrationGridPane.setHgap(10);
+	    	fineRegistrationGridPane.setVgap(10);
+	    	fineRegistrationGridPane.add(runningFinesTableView, 0, 1);
+	    	fineRegistrationGridPane.add(fineRegistrationFlowPane, 0, 2);
+	    	
+			//TableView Customization
+	    	TableColumn<Student, String> idColumn = new TableColumn<>("ID");
+			idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
+			runningFinesTableView.getColumns().add(idColumn);
 			
+			TableColumn<Student, String> nameColumn = new TableColumn<>("Name");
+			nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+			runningFinesTableView.getColumns().add(nameColumn);
+	    	
+			TableColumn<Student, String> fineAmountColumn = new TableColumn<>("Fine Amount");
+			fineAmountColumn.setCellValueFactory(new PropertyValueFactory<>("fineAmount"));
+			runningFinesTableView.getColumns().add(fineAmountColumn);
 			
+			TableColumn<Student, String> yobColumn = new TableColumn<>("Year of Birth");
+			yobColumn.setCellValueFactory(new PropertyValueFactory<>("yob"));
+			runningFinesTableView.getColumns().add(yobColumn);
+			
+			TableColumn<Student, String> telColumn = new TableColumn<>("Telephone");
+			telColumn.setCellValueFactory(new PropertyValueFactory<>("tel"));
+			runningFinesTableView.getColumns().add(telColumn);
+			
+			TableColumn<Student, String> emailColumn = new TableColumn<>("Email");
+			emailColumn.setCellValueFactory(new PropertyValueFactory<>("email"));
+			runningFinesTableView.getColumns().add(emailColumn);
+			
+			TableColumn<Student, String> AMColumn = new TableColumn<>("AM");
+			AMColumn.setCellValueFactory(new PropertyValueFactory<>("AM"));
+			runningFinesTableView.getColumns().add(AMColumn);
+			
+			TableColumn<Student, String> studyDepColumn = new TableColumn<>("Study Department");
+			studyDepColumn.setCellValueFactory(new PropertyValueFactory<>("studyDep"));
+			runningFinesTableView.getColumns().add(studyDepColumn);
 			
 			App.stage.setTitle("Register Fine");
 	    	App.stage.setScene(this.fineRegistrationScene);
+		}
+		if(event.getSource() == payFineBtn) {
+			
+			
+			
 		}
 		if(event.getSource() == fineRegistrationBackBtn) {
 			App.stage.setTitle("Payment Management");
